@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import django_heroku
 #from aws.conf import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -21,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY =  os.environ.get('SECRET_KEY')
+SECRET_KEY =  os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -164,3 +165,5 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 #AWS_LOCATION = 'static'
 #STATIC_URL = "https://%s/%s/" % (AWS_S3_HOST, AWS_LOCATION)
+
+django_heroku.settings(locals())
