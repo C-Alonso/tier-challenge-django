@@ -1,0 +1,28 @@
+{% extends "blog/base.html" %}
+<!-- This allows us to us the crispy filter in our forms (user registration form, in this case). -->
+{% load crispy_forms_tags %} 
+{% block shevoContent %}
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Log In!</legend>
+                <!-- .as_p <- As paragraph
+                //We comment it because we'll replace it with a crispy form instead :)--> 
+                <!-- {{ form.as_p }} -->
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Log In</button>
+                <small class="text-muted ml-2">
+                    <a href="{% url 'password_reset' %}">Reset Password</a>
+                </small>
+            </div>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                Need an account? <a class="ml-2" href="{% url 'register' %">Sign Up Now</a>
+            </small>
+        </div>
+    </div>
+{% endblock shevoContent %}
