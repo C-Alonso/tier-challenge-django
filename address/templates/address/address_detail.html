@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+         <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <link rel="stylesheet" type="text/css" href="{% static 'address/styles.css' %}">
+        <link rel="icon" href="{% static 'address/deer.png' %}">
+        <title>TIER</title>
+        
+    </head>
+    <body>
+        {% load crispy_forms_tags %} 
+        <div class="main-content">          
+            <header>
+                <h1>TIER</h1>
+                
+                <a href="/">HOME</a>
+            </header>
+
+            <div class="content-section">
+                <form action="{% url 'address-home' %}">
+                    {% csrf_token %}
+                    <p>Here is your TIER short-url!</p>
+                        {{ form|crispy }}
+                        <h2 class="article-title">{{ object.address }}</h2>
+                        <!-- <p class="article-content">tier.app/{{ object.short }}</p> -->
+                        <p><a class="article-content" href="{% url 'get-address-detail' object.short %}">
+                            tier.app/{{ object.short }}
+                        </a></p>
+                        <button class="btn btn-outline-info" type="submit">Do it again!</button>
+                </form>
+            </div>
+
+        </div>
+            
+        <footer>
+            <p>Created by Carlos Alonso</p>
+        </footer>
+
+    </body>
+
+</html>
+            

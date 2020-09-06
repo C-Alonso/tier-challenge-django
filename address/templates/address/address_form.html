@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+         <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        
+        <link rel="stylesheet" type="text/css" href="{% static 'address/styles.css' %}">
+        <link rel="icon" href="{% static 'address/deer.png' %}">
+        <title>TIER</title>
+        
+    </head>
+    <body>
+        {% load crispy_forms_tags %} 
+        <div class="main-content">          
+            <header>
+                <h1>TIER</h1>
+                
+                <a href="/">HOME</a>
+            </header>
+
+            <div class="content-section">
+                <form method="POST">
+                    {% csrf_token %}
+                    <p>Use this site to get your TIER short-url!</p>
+                        {{ form|crispy }}
+                        <button class="btn btn-outline-info" type="submit">Create</button> 
+                </form>
+            </div>
+
+
+        </div>
+            
+        <footer>
+            <p>Created by Carlos Alonso</p>
+        </footer>
+
+    </body>
+
+</html>
+
+<script>
+    $(function () {
+        console.log("cuac")
+        $("#form.address").keyup(function (event) {
+            if (event.which === 13) {
+                document.form.submit();
+            }
+        })
+    });
+</script>
