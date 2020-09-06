@@ -132,4 +132,26 @@ MEDIA_URL = '/media/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+#Credentials to provide the user access to the bucket.
+#(Note: 'storages' must also be added to the INSTALLED_APPS)
+AWS_ACCESS_KEY_ID= os.environ.get('DJANGO_AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY= os.environ.get('DJANGO_AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME= os.environ.get('DJANGO_AWS_STORAGE_BUCKET_NAME')
+
+# #To allow for duplicate names.
+AWS_S3_FILE_OVERWRITE = False
+# #The current default of that value could cause issues...
+AWS_DEFAULT_ACL = None
+# #This info is available in the documentation (django-storages).
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+#AWS_REGION = 'eu-west-3'
+#AWS_REGION = 'us-east-1'
+#AWS_S3_HOST = 's3.%s.amazonaws.com' % AWS_REGION
+#AWS_S3_SIGNATURE_VERSION = 's3v4'
+
+#AWS_LOCATION = 'static'
+#STATIC_URL = "https://%s/%s/" % (AWS_S3_HOST, AWS_LOCATION)
+
 django_heroku.settings(locals())
